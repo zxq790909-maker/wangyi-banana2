@@ -2,91 +2,48 @@
 
 武镜画家（短剧制作机）的 OPENCLAW SKILLS 版本，支持图片和视频生成。
 
-## 🚀 快速开始
+## 📥 安装技能
 
-### 1. 配置 API Key（贞贞工坊）
+1. 打开 [ClawHub](https://clawhub.ai/)
+2. 搜索并安装 **wangyi-banana2** 技能
+3. 安装成功后，会弹出**模型列表**，说明安装成功 ✅
 
-贞贞工坊注册指南：比官方价格低80%
+## 📝 注册与配置（不会配置？按下面来）
 
-获取APIKEY后，在右侧填入
-https://ai.t8star.cn/ 获取API地址
+### 第一步：注册账号并获取 API Key
 
-注册送0.2，每日签到也送
+1. **打开链接注册**：[https://ai.t8star.cn/register?aff=253d8a45349](https://ai.t8star.cn/register?aff=253d8a45349)
+2. **添加令牌**：点击左侧「令牌」→「添加令牌」（名字随便写，其它默认）→ 提交
+3. **充值算力**：点击左侧「钱包」→ 充值算力（汇率约 5 刀=6.75 RMB，最低 5 刀起充）
+4. **复制 API Key**
 
-国外低价SORA2基本废了，10次请求可能只有一次生成不玩也罢，大家还是去白嫖SEEDANCE2.0吧
+### 第二步：在 OPENCLAW 中配置
 
-QQ交流群：386692323
+回到 OPENCLAW，发送以下指令：（强烈建议在发送前先备份 openclaw.json以防不测）
 
-先注册贞贞的AI工坊：点这里?
+> 对小龙虾说：帮我配置好，根据龙虾提示，进行下一步的操作，发的指令必须加上”注意是在 openclaw.json 添加，不可覆盖或删除原来里面的配置参数“
 
-注册后，创建令牌，然后复制密钥，粘贴到右边的apikey这里，当然要充值充值后才能使用哈^-^
+等待一会儿，配置就完成了。
 
-需要注册T8的贞贞工坊才能生图和生视频哈！
+**赶紧生一张图片试试吧！** 🎨
 
-注册地址：https://ai.t8star.cn/register?aff=253d8a45349
+有了这个 SKILLS，把 QQ 或飞书接入 OPENCLAW，就可以随时随地调用贞贞工坊的 API 来生成图片和视频啦～ ComfyUI 暂时可以下岗了！
 
-1、注册后登陆，点击左侧的令牌，创建API KEY，然后复制它
+---
 
-2、左侧点击钱包，充值个5美刀的算力，按这里的汇率只要6.75人民币
+如果配置正确，打开openclaw.json，在最后会显示：
 
-3、一次充5美刀算力，即6.75人民币即可！额度用完后再充
-
-4、找到工作流中，有apikey的节点，粘贴刚才复制的api key
-
-5、开始生成视频，可以文生视频，也可以图生视频，短剧的话，可以豆包生成分镜脚本，即梦免费出图
-
-6、SORA2文生或图生视频，不得上传低俗擦边和真人图片，切记，不然会生成失败
-
-7、如果生成失败是不会扣费的，可以自己查看日志和钱包
-
-
-
-#### 方法一：使用配置脚本（最简单）
-
-在正常运行的OPENCLAW中，开启聊天，把你的APIKEY直接发给小龙虾，让他帮你配置好，就可以用了
-```
-
-#### 方法二：手动编辑配置文件
-
-1. 打开配置文件：`C:\Users\你的用户名\.openclaw\openclaw.json`
-2. 如果文件不存在，创建它并添加：
-
-```json
-{
+   }
+  },
   "skills": {
     "entries": {
       "wangyi-banana": {
-        "apiKey": "your_api_key_here"
+        "apiKey": "XXXXXXXXXXXXXXXXXXXXXX"
       }
     }
   }
 }
-```
 
-#### 方法三：设置环境变量
-
-在 PowerShell 中：
-
-```powershell
-$env:WANGYI_API_KEY = "your_api_key_here"
-```
-
-### 2. 验证配置
-
-```powershell
-python3 scripts\wangyi-banana.py --check
-```
-
-如果配置正确，会显示：
-
-```json
-{
-  "status": "ready",
-  "key_prefix": "xxxx****",
-  "host": "https://ai.t8star.cn",
-  "message": "API key is valid"
-}
-```
 
 ## 📖 使用示例
 
@@ -131,14 +88,26 @@ python3 scripts\wangyi-banana.py `
 ## 📝 支持的模型
 
 ### 图片模型
-- `nano-banana-2-2k` - Standard image generation model (recommended)
-- `nano-banana-2-4k` - 4K HD version
-- `nano-banana-pro` - Image-to-image editing model
-- `gemini-2.5-flash-image-preview` - Gemini official model
+- `nano-banana` - banana1 直接返图（单次 0.08）：文生图/图生图/多图参考；参考图支持 b64/URL/data:image/*
+- `nano-banana-hd` - banana1 直接返图（单次 0.12）：文生图/图生图/多图参考；参考图支持 b64/URL/data:image/*
+- `nano-banana-edit` - banana1 图生图编辑（单次 0.08）：图生图/多图参考；直接返图
+- `nano-banana-2` - BANANA2 直返图（文生图/图生图编辑，费用 0.2）
+- `nano-banana-2-2K` - BANANA2 2K 直返图（文生图/图生图编辑，费用 0.2）
+- `nano-banana-2-4k` - BANANA2 4K 直返图（文生图/图生图编辑，费用 0.2）
+- `nano-banana-pro` - BANANA2 Pro 直返图（文生图/图生图编辑，费用 0.2）
+- `gemini-2.5-flash-image` - Gemini 2.5 Flash 绘图模型（费用 0.04）
+- `gemini-2.5-flash-image-preview` - Gemini 2.5 Flash 预览版（费用 0.04）
+- `gemini-3.1-flash-image-preview` - Gemini 3.1 Flash 图片预览（费用 0.1）
+- `gemini-3.1-flash-image-preview-2k` - Gemini 3.1 Flash 2K 图片预览（费用 0.1）
+- `gemini-3.1-flash-image-preview-4k` - Gemini 3.1 Flash 4K 图片预览（费用 0.1）
+
+> `gemini-2.5-flash-image*` 适用于文生图与图编辑，支持多张参考图（最多 14 张），参考图可用路径/URL/b64/data URI；通常先返回链接（脚本会自动下载），单张费用约 0.04。
+> `gemini-3.1-flash-image-preview*` 可用于文生图与图编辑，支持多图组合（最多 14 张）。
+> 与直接 BANANA2 相比：预览版通常先返回链接（脚本会自动下载），单张费用约 0.1；直接 BANANA2 常可直接返图，单张费用约 0.2。
 
 ### 视频模型
-- `sora-2` - 标准版本（10s, 15s）
-- `sora-2-pro` - Pro 版本（10s, 15s, 25s）
+- `sora-2` - 标准版本（10s, 15s；按次计费单次 0.1）；更准确、更逼真、更可控；支持对话/音效（在提示词里写要求即可）
+- `grok-video-3` - 15s/次（费用 0.5）
 
 ## 🌐 API 地址
 
@@ -150,4 +119,4 @@ python3 scripts\wangyi-banana.py `
 
 ## 📞 获取 API Key
 
-请联系您的 WangYi Banana 服务提供商获取 API Key。
+前往 [贞贞的AI工坊](https://ai.t8star.cn/register?aff=253d8a45349) 注册并充值即可获取 API Key。详见上方「注册与配置」步骤。
